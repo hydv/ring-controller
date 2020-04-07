@@ -3,8 +3,7 @@
 
 BleKeyboard bleKeyboard;
 
-int i = 0;
-int j = 0;
+int i = 1;
 
 void setup() {
   M5.begin();
@@ -33,11 +32,13 @@ void loop() {
 //    }
     int d = digitalRead(33);
     Serial.println(d);
-    M5.Lcd.fillScreen(TFT_BLACK);
-    M5.Lcd.setCursor(0, 0);
-    if(d == 1) {
+    if(d) {
+      M5.Lcd.fillScreen(TFT_BLACK);
+      M5.Lcd.setCursor(0, 0);
       bleKeyboard.press(KEY_LEFT_ARROW);
-      M5.Lcd.println("Send KEY_LEFT_ARROW");
+      M5.Lcd.print("Send KEY_LEFT_ARROW: ");
+      M5.Lcd.println(i);
+      i++;
       delay(10);
       bleKeyboard.releaseAll();
       delay(300);
